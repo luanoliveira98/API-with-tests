@@ -25,13 +25,10 @@ describe('Create Appointment', () => {
     const appointmentsRepository = new InMemoryAppointmentsRepository()
     const createAppointment = new CreateAppointment(appointmentsRepository)
 
-    const startsAt = getFutureDate('2022-10-17')
-    const endsAt = getFutureDate('2022-10-20')
-
     await createAppointment.execute({
       customer: 'John Doe',
-      startsAt,
-      endsAt
+      startsAt: getFutureDate('2022-10-17'),
+      endsAt: getFutureDate('2022-10-20')
     })
 
     expect(

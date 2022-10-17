@@ -3,13 +3,10 @@ import { Appointment } from './appointment'
 import { getFutureDate } from '../tests/utils/getFutureDate'
 
 test('create an appointment', () => {
-  const startsAt = getFutureDate('2022-10-17')
-  const endsAt = getFutureDate('2022-10-18')
-
   const appointment = new Appointment({
     customer: 'John Doe',
-    startsAt,
-    endsAt
+    startsAt: getFutureDate('2022-10-17'),
+    endsAt: getFutureDate('2022-10-18')
   })
 
   expect(appointment).toBeInstanceOf(Appointment)
@@ -17,14 +14,11 @@ test('create an appointment', () => {
 })
 
 test('cannot create an appointment with end date before starts date', () => {
-  const startsAt = getFutureDate('2022-10-17')
-  const endsAt = getFutureDate('2022-10-16')
-
   expect(() => {
     return new Appointment({
       customer: 'John Doe',
-      startsAt,
-      endsAt
+      startsAt: getFutureDate('2022-10-17'),
+      endsAt: getFutureDate('2022-10-16')
     })
   }).toThrow()
 })
